@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FooterComponent } from '../footer/footer.component';
 
 
@@ -9,11 +9,25 @@ import { FooterComponent } from '../footer/footer.component';
   styleUrls: ['./user-details.component.css']
 })
 export class UserDetailsComponent {
-  constructor(private route: ActivatedRoute) {
+  userId: string = '';
+
+  constructor(private route: ActivatedRoute) {}
+
+    ngOnInit() {
+    // Subscribe to route parameters to get the user ID
     this.route.params.subscribe((params) => {
-      const userId = params['userId'];
-      console.log("test")
-      // Use the userId to fetch and display user details
+      this.userId = params['userId']; // 'id' should match the route parameter name
+      // Now, you can use this.userId in your component
     });
+    console.log("test")
+    console.log(this.userId)
   }
+
+    // ngOnInit() {
+    //   this.route.params.subscribe((params) => {
+    //     const userId = params['userId'];
+    //     console.log("test")
+    //     // Use the userId to fetch and display user details
+    //   });
+    // };
 }
