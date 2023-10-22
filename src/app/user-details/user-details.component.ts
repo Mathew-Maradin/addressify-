@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FooterComponent } from '../footer/footer.component';
-
+import { UserStoreService } from '../user-store.service';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-user-details',
@@ -10,24 +10,22 @@ import { FooterComponent } from '../footer/footer.component';
 })
 export class UserDetailsComponent {
   userId: string = '';
+  userData: any[] = []
+  specificUser: any = {}
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private userStoreService: UserStoreService) {}
 
-    ngOnInit() {
-    // Subscribe to route parameters to get the user ID
+  ngOnInit() {
+    console.log("load")
     this.route.params.subscribe((params) => {
-      this.userId = params['userId']; // 'id' should match the route parameter name
-      // Now, you can use this.userId in your component
+      this.userId = params['userId'];
     });
-    console.log("test")
-    console.log(this.userId)
-  }
+    this.userData = this.userStoreService.getAllUsers();
 
-    // ngOnInit() {
-    //   this.route.params.subscribe((params) => {
-    //     const userId = params['userId'];
-    //     console.log("test")
-    //     // Use the userId to fetch and display user details
-    //   });
-    // };
+    for (let i = 0; i < this.userData.length; i++) {
+      if (this.userData[i].login.uuid == this.userId){
+        this.specificUser = this.userData[i]
+      }
+    }
+  }
 }

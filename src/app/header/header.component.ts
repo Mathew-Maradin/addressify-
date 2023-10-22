@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { SearchService } from '../search.service';
+// import { SearchService } from '../search.service';
 
 @Component({
   selector: 'app-header',
@@ -10,13 +10,13 @@ import { SearchService } from '../search.service';
 export class HeaderComponent {
   searchQuery: string = '';
 
-  constructor(private router: Router, private searchService: SearchService) {}
+  constructor(private router: Router) {}
 
   @Output() searchQueryChange = new EventEmitter<string>();
 
   onInputChange() {
     const query = this.searchQuery;
-    this.searchService.setSearchQuery(query); // Set the search query using the service
+    // this.searchService.setSearchQuery(query); // Set the search query using the service
   }
 
   isRootDirectory(): boolean {
