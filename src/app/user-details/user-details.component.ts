@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { FooterComponent } from '../footer/footer.component';
 
 
 @Component({
@@ -15,5 +16,4 @@ export class UserDetailsComponent {
       // Use the userId to fetch and display user details
     });
   }
-
 }

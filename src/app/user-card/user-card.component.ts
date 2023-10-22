@@ -12,7 +12,7 @@ export class UserCardComponent {
   constructor(private router: Router) {}
 
   fetchUsers() {
-    this.router.navigate('/details/ID');
+    // this.router.navigate('/details/ID');
   }
 
   ngOnInit() {

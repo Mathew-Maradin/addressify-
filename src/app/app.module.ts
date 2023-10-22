@@ -11,6 +11,10 @@ import { UserGridComponent } from './user-grid/user-grid.component';
 import { UserCardComponent } from './user-card/user-card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UserDetailsComponent } from './user-details/user-details.component';
+import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './header/header.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -18,6 +22,8 @@ import { UserDetailsComponent } from './user-details/user-details.component';
     UserGridComponent,
     UserCardComponent,
     UserDetailsComponent,
+    FooterComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +32,12 @@ import { UserDetailsComponent } from './user-details/user-details.component';
     MatSlideToggleModule,
     MatGridListModule,
     MatCardModule,
-    MatToolbarModule
+    MatToolbarModule,
+    BrowserAnimationsModule,
+    RouterModule.forRoot([
+      {path: '', component: UserGridComponent},
+      {path: 'details/:id', component: UserDetailsComponent}
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]

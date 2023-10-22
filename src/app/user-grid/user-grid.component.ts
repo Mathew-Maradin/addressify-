@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { UsersService } from '../users.service';
 import { HttpClient } from '@angular/common/http';
 import { IUser } from '../user';
 import { UserCardComponent } from '../user-card/user-card.component';
+import { FooterComponent } from '../footer/footer.component';
+import { HeaderComponent } from '../header/header.component';
 import { Router } from '@angular/router';
 
 @Component({
@@ -33,12 +35,12 @@ export class UserGridComponent implements OnInit{
     }
 
     loadMoreUsers() {
-      this.results += 10; // Increase the number of results to fetch
+      this.results += 10;
       this.fetchUsers();
     }
 
-    navigateToDetailsPage(userId: string) {
-      this.router.navigate(['/details', userId]);
-    }
+    // navigateToDetailsPage(userId: string) {
+    //   this.router.navigate(['/details', userId]);
+    // }
 
   }
