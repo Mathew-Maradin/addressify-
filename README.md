@@ -14,13 +14,13 @@
   to create a load more button that would allow users to add more cards in sets of 10. 
 
 # Features
-  CSS Animations as the grid elements fade in
-  Search bar to allow the user to query the address book by a name
-  pagination to load an additional 10 users to the website
-  Use of services to manage data
-  Heirarchy of parent and child components with emitters
-  Tailwind CSS to make a very userfriendly and responsive design
-  Deployed live on vercel 
+  CSS Animations as the grid elements fade in,
+  Search bar to allow the user to query the address book by a name,
+  pagination to load an additional 10 users to the website,
+  Use of services to manage data,
+  Heirarchy of parent and child components with emitters,
+  Tailwind CSS to make a very userfriendly and responsive design,
+  Deployed live on vercel,
   98 for accessibility & 90 for SEO on Lighthouse!
 
 # How I would Improve
