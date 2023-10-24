@@ -1,5 +1,4 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-// import { UsersService } from '../users.service';
 import { UserStoreService } from '../user-store.service';
 import { HttpClient } from '@angular/common/http';
 import { IUser } from '../user';
@@ -7,7 +6,8 @@ import { UserCardComponent } from '../user-card/user-card.component';
 import { FooterComponent } from '../footer/footer.component';
 import { HeaderComponent } from '../header/header.component';
 import { Router } from '@angular/router';
-// import { SearchService } from '../search.service';
+import { filter } from 'rxjs';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-user-grid',
@@ -16,60 +16,53 @@ import { Router } from '@angular/router';
 })
 export class UserGridComponent implements OnInit{
   userData: any[] = []
-  filteredUsers: IUser[] = [];
-  results = 10
+  filteredUsers: any[] = [];
+  unFilteredUsers: any[] = [];
+  searchText: string = "";
   val: any
 
-  constructor(private http: HttpClient, private router: Router, private userStoreService: UserStoreService){}
+  constructor(private http: HttpClient, private router: Router, private userStoreService: UserStoreService, private apiService: ApiService){}
 
-  ngOnInit() {
-    this.http.get<IUser>('https://randomuser.me/api/?results=10&seed=nuvalence').subscribe(Response => {
-      // this.userData = Response['results'];
+  ngOnInit() { //get initial users
+    this.apiService.getData().subscribe(Response => {
       this.userStoreService.addUser(Response['results'])
-      console.log("users")
-      console.log(this.userStoreService.getAllUsers())
       this.userData = this.userStoreService.getAllUsers();
+      this.unFilteredUsers = this.userStoreService.getAllUsers(); //Assinging to variables
     });
 
-    // this.searchService.getSearchQuery().subscribe((query) => {
-    //   console.log("filter")
-    //   console.log(this.filterUsers(query))
-    //   this.filteredUsers = this.filterUsers(query);
-    // });
-
-    // console.log("users")
-    // console.log(this.userStoreService.getAllUsers())
     this.userData = this.userStoreService.getAllUsers();
-    // console.log(this.userData)
     }
 
-    fetchUsers() {
-      this.http
-      .get<IUser>('https://randomuser.me/api/?results=10&seed=nuvalence')
+    loadMoreUsers() {//Load more users when requested
+      this.apiService.getData()
         .subscribe((data) => {
-          console.log(data.results)
-          // this.userData = this.userData.concat(data.results);
           this.userStoreService.addUser(data.results)
           this.userData = this.userStoreService.getAllUsers();
+          this.unFilteredUsers = this.userStoreService.getAllUsers();
         });
     }
 
-    loadMoreUsers() {
-      this.results += 10;
-      this.fetchUsers();
-    }
-
-    filterUsers(query: string): IUser[] {
-      console.log(query)
+    filterUsers(query: string): IUser[] { //Filter users based on first name
       if (!query) {
-        return this.userData; // If the query is empty, return all users
+        this.userData = this.unFilteredUsers
+        return this.userData;
       }
 
       const lowercaseQuery = query.toLowerCase();
 
-      return this.userData.filter((user) => {
-        const lowercaseName = user.name.toLowerCase();
+      const filteredUsers: IUser[] = this.unFilteredUsers.filter((user) => { //map through users and check first name
+        const lowercaseName = user.name.first.toLowerCase();
         return lowercaseName.includes(lowercaseQuery);
       });
+
+      this.userData = filteredUsers
+      return filteredUsers;
     }
-  }
+
+    onSearchTextEnter(searchValue: any){ //get search bar data and filter
+      this.searchText = searchValue;
+      this.filterUsers(searchValue)
+    }
+}
+
+

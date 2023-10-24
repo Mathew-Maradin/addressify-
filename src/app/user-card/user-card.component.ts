@@ -9,13 +9,5 @@ import { Router } from '@angular/router';
 export class UserCardComponent {
   @Input() userData: any; // Input property to receive data
 
-  constructor(private router: Router) {}
-
-  fetchUsers() {
-    // this.router.navigate('/details/ID');
-  }
-
-  ngOnInit() {
-
-  }
+  constructor() {}
 }

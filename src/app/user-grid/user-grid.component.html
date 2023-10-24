@@ -1,4 +1,4 @@
-<app-header></app-header>
+<app-header (searchTextChanged)="onSearchTextEnter($event)"></app-header>
 
 <div class="card-container" id="grid">
   <app-user-card class="card" *ngFor="let e of userData;" [userData]="e"></app-user-card>
@@ -11,3 +11,5 @@
 </div>
 
 <app-footer></app-footer>
+
+<!-- <app-header (onSeachTextChanged)="onSearchTextEnter($any($event))"></app-header> -->

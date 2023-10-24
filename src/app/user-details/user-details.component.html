@@ -18,8 +18,7 @@
                   class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
                   <li class="flex items-center py-3">
                       <span>Status</span>
-                      <span class="ml-auto"><span
-                              class="bg-blue-500 py-1 px-2 rounded text-white text-sm">Active</span></span>
+                      <span class="ml-auto"><span class="bg-blue-500 py-1 px-2 rounded text-white text-sm">Active</span></span>
                   </li>
                   <li class="flex items-center py-3">
                       <span>Member since</span>
@@ -84,7 +83,7 @@
       </div>
       <!-- Right Side -->
       <div></div>
-      <div class="w-full md:w-9/12 mx-2 h-64">
+      <div class="w-full md:w-9/12 mx-2 h-64 hover:shadow">
           <!-- Profile tab -->
           <!-- About Section -->
           <div class="flex items-center justify-center">
@@ -129,9 +128,7 @@
                       </div>
                       <div class="grid grid-cols-2">
                           <div class="px-4 py-2 font-semibold">Age</div>
-                          <div class="px-4 py-2">
-                              <a class="text-blue-800" href="mailto:jane@example.com">{{ specificUser.dob.age}}</a>
-                          </div>
+                          <div class="px-4 py-2"> {{ specificUser.dob.age}} </div>
                       </div>
                       <div class="grid grid-cols-2">
                           <div class="px-4 py-2 font-semibold">Birthday</div>
@@ -145,7 +142,7 @@
           <div class="my-4"></div>
 
           <!-- Experience and education -->
-          <div class="bg-white p-3 shadow-sm rounded-sm">
+          <div class="bg-white p-3 shadow-sm rounded-sm hover:shadow">
 
               <div class="grid grid-cols-2">
                   <div>
